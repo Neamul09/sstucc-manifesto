@@ -1,0 +1,1312 @@
+/* ==========================================================================
+   Custom Font
+   ========================================================================== */
+@font-face {
+    font-family: 'LiAdorNoirrit';
+    src: url('assets/fonts/Li Ador Noirrit Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ==========================================================================
+   CSS Variables & Theming — Cartoony, Playful
+   ========================================================================== */
+:root {
+    /* Poster Blues */
+    --primary: #1a4fba;
+    --primary-deep: #0e3788;
+    --primary-bright: #3b7dff;
+    --primary-sky: #5dade2;
+
+    /* Accent Greens */
+    --accent: #1db954;
+    --accent-glow: rgba(29, 185, 84, 0.35);
+
+    /* Light mode (default) */
+    --bg-body: #ffffff;
+    --bg-section: #f0f4ff;
+    --bg-hero: linear-gradient(160deg, #1a4fba 0%, #3b7dff 40%, #5dade2 100%);
+    --bg-card: #ffffff;
+    --card-border: #1a4fba;
+    /* Darker border for neo-brutalism */
+    --card-shadow: 6px 6px 0px rgba(26, 79, 186, 0.8);
+    /* Solid offset shadow */
+
+    --text-dark: #1a1a2e;
+    --text-body: #333;
+    --text-muted: #6b7280;
+    --text-white: #ffffff;
+
+    --danger: #ef4444;
+    --success: #22c55e;
+
+    /* Fonts */
+    --font-display: 'Bungee', 'LiAdorNoirrit', cursive;
+    --font-heading: 'Bungee', 'LiAdorNoirrit', sans-serif;
+    --font-body: 'LiAdorNoirrit', sans-serif;
+
+    /* Decorative */
+    --dot-pattern: radial-gradient(circle, var(--primary-bright) 1px, transparent 1px);
+    --wave-color: rgba(255, 255, 255, 0.08);
+}
+
+body.dark-mode {
+    --bg-body: #0b1120;
+    --bg-section: #111827;
+    --bg-hero: linear-gradient(160deg, #0b1120 0%, #1a2744 40%, #1e3a5f 100%);
+    --bg-card: #1e293b;
+    --card-border: #3b7dff;
+    --card-shadow: 6px 6px 0px rgba(59, 125, 255, 0.8);
+
+    --text-dark: #f1f5f9;
+    --text-body: #cbd5e1;
+    --text-muted: #94a3b8;
+
+    --wave-color: rgba(255, 255, 255, 0.03);
+}
+
+/* ==========================================================================
+   Global Reset & Base Styles
+   ========================================================================== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-body);
+    color: var(--text-body);
+    line-height: 1.7;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text-dark);
+}
+
+a {
+    color: var(--primary-bright);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+.container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* ==========================================================================
+   Fun Decorative SVG Shapes — injected via CSS
+   ========================================================================== */
+.deco-dots {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background-image: var(--dot-pattern);
+    background-size: 10px 10px;
+    opacity: 0.25;
+    border-radius: 4px;
+    pointer-events: none;
+}
+
+.deco-triangle {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 34px solid var(--primary-sky);
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+.deco-circle {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border: 5px solid var(--primary-bright);
+    border-radius: 50%;
+    opacity: 0.1;
+    pointer-events: none;
+}
+
+.deco-bracket {
+    position: absolute;
+    font-family: var(--font-display);
+    font-size: 5rem;
+    color: var(--primary-bright);
+    opacity: 0.06;
+    pointer-events: none;
+    line-height: 1;
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2.2rem;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1.05rem;
+    border-radius: 60px;
+    cursor: pointer;
+    border: 3px solid transparent;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary {
+    background: var(--text-white);
+    color: var(--primary);
+    border-color: var(--text-white);
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary:hover {
+    background: var(--primary-bright);
+    color: var(--text-white);
+    transform: translateY(-4px) scale(1.05) rotate(-2deg);
+    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.3);
+}
+
+.btn-outline {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: transparent;
+    box-shadow: 4px 4px 0px rgba(26, 79, 186, 0.2);
+}
+
+.btn-outline:hover {
+    background: var(--primary);
+    color: var(--text-white);
+    transform: translateY(-4px) scale(1.05) rotate(2deg);
+    box-shadow: 6px 6px 0px rgba(26, 79, 186, 0.4);
+}
+
+.btn-sm {
+    padding: 0.45rem 1.2rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 50px;
+    background-color: var(--text-white);
+    color: var(--primary) !important;
+    border: 2px solid var(--text-white);
+    font-family: var(--font-heading);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-sm:hover {
+    background: transparent;
+    color: var(--text-white) !important;
+}
+
+/* badge */
+.badge {
+    display: inline-block;
+    padding: 0.4rem 1.2rem;
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--text-white);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(4px);
+}
+
+/* ==========================================================================
+   Navigation — Playful
+   ========================================================================== */
+#navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: all 0.35s ease;
+    padding: 1rem 0;
+}
+
+#navbar.scrolled {
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 3px solid var(--primary);
+    padding: 0.6rem 0;
+    box-shadow: 0 4px 20px rgba(26, 79, 186, 0.15);
+}
+
+/* When scrolled, nav links should use dark text */
+#navbar.scrolled .nav-links a:not(.btn-sm) {
+    color: var(--text-dark);
+}
+
+#navbar.scrolled .logo {
+    color: var(--primary);
+}
+
+#navbar.scrolled .toggle-btn {
+    color: var(--text-dark);
+    border-color: var(--card-border);
+}
+
+#navbar.scrolled .btn-sm {
+    background: var(--primary);
+    color: var(--text-white) !important;
+    border-color: var(--primary);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.logo {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    color: var(--text-white);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    letter-spacing: 2px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.8rem;
+}
+
+.nav-links a:not(.btn-sm) {
+    color: var(--text-white);
+    font-family: var(--font-heading);
+    font-weight: 500;
+    position: relative;
+    font-size: 0.95rem;
+}
+
+.nav-links a:not(.btn-sm)::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: -5px;
+    left: 0;
+    background: var(--text-white);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.nav-links a:not(.btn-sm):hover::after {
+    width: 100%;
+}
+
+#navbar.scrolled .nav-links a:not(.btn-sm)::after {
+    background: var(--primary);
+}
+
+.toggles {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.toggle-btn {
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: var(--text-white);
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    transition: all 0.25s;
+}
+
+.toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.08);
+}
+
+/* Mobile */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-white);
+    cursor: pointer;
+}
+
+#navbar.scrolled .mobile-menu-btn {
+    color: var(--text-dark);
+}
+
+.mobile-nav-panel {
+    display: none;
+    flex-direction: column;
+    background: var(--bg-card);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    padding: 1rem 1.5rem;
+    border-top: 3px solid var(--primary);
+}
+
+.mobile-nav-panel.active {
+    display: flex;
+}
+
+.mobile-link {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--card-border);
+    color: var(--text-dark) !important;
+    font-family: var(--font-heading);
+    font-weight: 500;
+}
+
+.mobile-link:last-child {
+    border-bottom: none;
+    margin-top: 0.5rem;
+    display: inline-block;
+    text-align: center;
+}
+
+@media (max-width: 900px) {
+
+    .nav-links,
+    .toggles {
+        display: none;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    /* Show toggles inside mobile panel */
+    .mobile-toggles {
+        display: flex !important;
+        gap: 0.75rem;
+        padding: 0.75rem 0;
+    }
+}
+
+/* ==========================================================================
+   HERO SECTION — Big, Bold, Cartoony like the poster
+   ========================================================================== */
+.hero-section {
+    position: relative;
+    background: var(--bg-hero);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 140px 0 80px;
+    overflow: hidden;
+}
+
+/* Wavy Background Effect */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(ellipse at 20% 80%, rgba(255, 255, 255, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(255, 255, 255, 0.04) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* Wavy bottom border */
+.hero-section::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: var(--bg-body);
+    clip-path: ellipse(55% 100% at 50% 100%);
+    z-index: 2;
+}
+
+.hero-bg-shapes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Scattered decorative elements (positioned via CSS) */
+.hero-bg-shapes::before {
+    content: '{ }';
+    position: absolute;
+    top: 15%;
+    right: 8%;
+    font-family: var(--font-display);
+    font-size: 4rem;
+    color: rgba(255, 255, 255, 0.08);
+    transform: rotate(15deg);
+}
+
+.hero-bg-shapes::after {
+    content: '< / >';
+    position: absolute;
+    bottom: 20%;
+    left: 5%;
+    font-family: var(--font-display);
+    font-size: 3rem;
+    color: rgba(255, 255, 255, 0.06);
+    transform: rotate(-10deg);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Big Chunky Poster Title */
+.hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    color: var(--text-white);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    text-shadow:
+        3px 3px 0 var(--primary-deep),
+        6px 6px 0 rgba(0, 0, 0, 0.15);
+    -webkit-text-stroke: 1px rgba(0, 0, 0, 0.1);
+}
+
+.hero-subtitle {
+    font-family: var(--font-heading);
+    font-size: clamp(1.1rem, 3vw, 1.6rem);
+    margin-bottom: 2.5rem;
+}
+
+.bg-accent {
+    background: rgba(93, 173, 226, 0.5);
+    color: var(--text-white);
+    padding: 0.3rem 1.2rem;
+    display: inline-block;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    backdrop-filter: blur(4px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Candidate Polaroid Card */
+.candidate-card-wrapper {
+    position: relative;
+    display: inline-block;
+    margin: 1.5rem 0 2rem;
+}
+
+.vote-badge {
+    position: absolute;
+    top: -15px;
+    left: -35px;
+    background: var(--text-white);
+    color: var(--accent);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transform: rotate(-12deg);
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    animation: wobble 3s ease-in-out infinite;
+}
+
+@keyframes wobble {
+
+    0%,
+    100% {
+        transform: rotate(-12deg);
+    }
+
+    25% {
+        transform: rotate(-8deg) scale(1.05);
+    }
+
+    75% {
+        transform: rotate(-15deg) scale(0.97);
+    }
+}
+
+.candidate-card.style-polaroid {
+    background: var(--text-white);
+    padding: 12px 12px 50px 12px;
+    border-radius: 6px;
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.3),
+        0 2px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transform: rotate(2deg);
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border: 3px solid rgba(255, 255, 255, 0.8);
+}
+
+.candidate-card.style-polaroid:hover {
+    transform: rotate(-1deg) scale(1.03);
+}
+
+.candidate-card .pin {
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #e2e8f0;
+    font-size: 1.6rem;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+}
+
+.candidate-card .candidate-img {
+    width: 240px;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 3px solid #e8f0fe;
+}
+
+.candidate-name {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    color: var(--text-white);
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 0 var(--primary-deep);
+    margin-bottom: 0.5rem;
+}
+
+.tagline {
+    font-family: var(--font-body);
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 2rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-ctas {
+    margin-top: 0.5rem;
+}
+
+.badge-container {
+    margin-bottom: 1rem;
+}
+
+/* Period tag next to photo */
+.period-tag {
+    position: absolute;
+    bottom: 60px;
+    right: -30px;
+    background: var(--text-white);
+    border: 2px dashed var(--primary);
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    color: var(--primary);
+    font-weight: 700;
+    transform: rotate(5deg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 5;
+}
+
+.period-tag .year {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--danger);
+    letter-spacing: 1px;
+}
+
+/* ==========================================================================
+   Section Shared Styles — Playful headers
+   ========================================================================== */
+.section {
+    padding: 90px 0;
+    position: relative;
+}
+
+.section-header {
+    margin-bottom: 3.5rem;
+}
+
+.section-header h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: var(--primary);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+}
+
+.dark-mode .section-header h2 {
+    color: var(--primary-bright);
+}
+
+.section-header h2::after {
+    content: '';
+    position: absolute;
+    width: 60%;
+    height: 5px;
+    background: var(--primary);
+    bottom: -12px;
+    left: 20%;
+    border-radius: 3px;
+}
+
+.dark-mode .section-header h2::after {
+    background: var(--primary-bright);
+}
+
+.section-header p {
+    margin-top: 1.8rem;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    font-family: var(--font-body);
+}
+
+.bg-section {
+    background-color: var(--bg-section);
+}
+
+/* ==========================================================================
+   Insights / Poll Section
+   ========================================================================== */
+.poll-wrapper {
+    background: var(--bg-card);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: var(--card-shadow);
+    border: 3px solid var(--card-border);
+    max-width: 750px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.poll-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary), var(--primary-sky), var(--accent));
+    border-radius: 20px 20px 0 0;
+}
+
+/* ==========================================================================
+   Custom UI Poll Widget (Simulated)
+   ========================================================================== */
+.custom-poll-container {
+    padding: 1rem 0;
+}
+.poll-question {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    color: var(--text-dark);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+.poll-checkbox-label {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 1rem;
+    background: var(--bg-body);
+    border: 3px solid var(--card-border);
+    border-radius: 12px;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    color: var(--primary-deep);
+    cursor: pointer;
+    box-shadow: 4px 4px 0px rgba(26, 79, 186, 0.4);
+    transition: all 0.2s ease;
+    gap: 1rem;
+}
+.poll-checkbox-label:hover {
+    transform: translateY(-2px);
+    box-shadow: 6px 6px 0px rgba(26, 79, 186, 0.8);
+}
+.poll-checkbox-label input[type="checkbox"] {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    accent-color: var(--primary);
+}
+.poll-checkbox-label:has(input:checked) {
+    background: var(--primary-bright);
+    color: var(--text-white);
+}
+
+.result-item {
+    margin-bottom: 1.2rem;
+}
+.result-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+    font-family: var(--font-heading);
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+.result-bar-bg {
+    width: 100%;
+    height: 24px;
+    background: var(--bg-body);
+    border-radius: 12px;
+    border: 2px solid var(--card-border);
+    overflow: hidden;
+}
+.result-bar-fill {
+    height: 100%;
+    width: 0%;
+    transition: width 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Colors for bars */
+.result-item:nth-child(1) .result-bar-fill { background: linear-gradient(90deg, #3b82f6, #2563eb); } /* Blue */
+.result-item:nth-child(2) .result-bar-fill { background: linear-gradient(90deg, #10b981, #059669); } /* Green */
+.result-item:nth-child(3) .result-bar-fill { background: linear-gradient(90deg, #f59e0b, #d97706); } /* Orange */
+.result-item:nth-child(4) .result-bar-fill { background: linear-gradient(90deg, #8b5cf6, #7c3aed); } /* Purple */
+
+/* ==========================================================================
+   Problems & Solutions — Cartoony Cards
+   ========================================================================== */
+.solutions-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.solution-card {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 1.5rem;
+    background: var(--bg-card);
+    padding: 2rem 1.5rem;
+    border-radius: 20px;
+    box-shadow: var(--card-shadow);
+    border: 3px solid var(--card-border);
+    transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.solution-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--danger), var(--success));
+    border-radius: 20px 0 0 20px;
+}
+
+.solution-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 6px 6px 0px #1a4fba99;
+}
+
+.problem,
+.solution {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.75rem;
+}
+
+.problem .icon,
+.solution .icon {
+    font-size: 2.2rem;
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.problem .icon {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger);
+}
+
+.solution .icon {
+    background: rgba(34, 197, 94, 0.1);
+    color: var(--success);
+}
+
+.problem p {
+    color: var(--text-muted);
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.solution p {
+    color: var(--text-dark);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.divider {
+    color: var(--primary-bright);
+    font-size: 1.5rem;
+    opacity: 0.4;
+}
+
+@media (max-width: 768px) {
+    .solution-card {
+        display: flex;
+        flex-direction: column;
+        padding: 2.5rem 1.5rem;
+        gap: 1.5rem;
+    }
+
+    .solution-card::before {
+        width: 100%;
+        height: 6px;
+        background: linear-gradient(90deg, var(--danger), var(--success));
+        border-radius: 17px 17px 0 0;
+    }
+
+    .problem, .solution {
+        flex-direction: row;
+        text-align: left;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .problem .icon, .solution .icon {
+        flex-shrink: 0;
+        width: 45px;
+        height: 45px;
+        font-size: 1.4rem;
+    }
+
+    .divider {
+        transform: rotate(90deg);
+        margin: 0;
+        align-self: center;
+    }
+}
+
+/* ==========================================================================
+   Manifesto Section — Playful Cards with top color strip
+   ========================================================================== */
+.manifesto-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+}
+
+.manifesto-item {
+    background: var(--bg-card);
+    padding: 2rem 1.5rem;
+    border-radius: 20px;
+    box-shadow: var(--card-shadow);
+    border: 3px solid var(--card-border);
+    text-align: center;
+    transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.manifesto-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: var(--primary);
+    transform: scaleX(0);
+    transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transform-origin: left;
+}
+
+.manifesto-item:hover::before {
+    transform: scaleX(1);
+}
+
+.manifesto-item:hover {
+    transform: translateY(-8px) rotate(-1deg);
+    box-shadow: 6px 6px 0px rgba(26, 79, 186, 0.6);
+    border-color: var(--primary);
+}
+
+.icon-wrapper {
+    width: 65px;
+    height: 65px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-bright));
+    color: var(--text-white);
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin: 0 auto 1.5rem;
+    box-shadow: 0 4px 12px rgba(26, 79, 186, 0.25);
+    transition: transform 0.3s;
+}
+
+.manifesto-item:hover .icon-wrapper {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.manifesto-item h4 {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    color: var(--text-dark);
+    margin-bottom: 0.75rem;
+}
+
+.manifesto-item p {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+}
+
+/* ==========================================================================
+   Feedback Section
+   ========================================================================== */
+.feedback-section {
+    background: var(--bg-hero);
+    color: var(--text-white);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Wavy top */
+.feedback-section::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: var(--bg-section);
+    clip-path: ellipse(55% 100% at 50% 0%);
+    z-index: 2;
+}
+
+.feedback-icon {
+    font-size: 4rem;
+    color: rgba(255, 255, 255, 0.15);
+    margin-bottom: 1.5rem;
+}
+
+.feedback-section h2 {
+    font-family: var(--font-display);
+    color: var(--text-white);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+}
+
+.feedback-section p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2rem;
+    max-width: 550px;
+    margin-inline: auto;
+    font-size: 1.05rem;
+}
+
+.feedback-section .btn-outline {
+    border-color: var(--text-white);
+    color: var(--text-white);
+}
+
+.feedback-section .btn-outline:hover {
+    background: var(--text-white);
+    color: var(--primary);
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+footer {
+    background: var(--primary-deep);
+    color: rgba(255, 255, 255, 0.7);
+    padding: 2.5rem 0;
+    text-align: center;
+}
+
+.dark-mode footer {
+    background: #050a15;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.footer-brand {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    color: var(--text-white);
+    letter-spacing: 2px;
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.social-links a {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.4rem;
+    transition: all 0.3s;
+}
+
+.social-links a:hover {
+    color: var(--text-white);
+    transform: translateY(-3px);
+}
+
+.copyright {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.85rem;
+    font-family: var(--font-heading);
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* ==========================================================================
+   Floating Decorative Elements (animated)
+   ========================================================================== */
+.floating-shapes {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.shape {
+    position: absolute;
+    opacity: 0.08;
+    animation: float 6s ease-in-out infinite;
+}
+
+.shape:nth-child(1) {
+    top: 10%;
+    left: 5%;
+    animation-delay: 0s;
+}
+
+.shape:nth-child(2) {
+    top: 20%;
+    right: 10%;
+    animation-delay: 1s;
+}
+
+.shape:nth-child(3) {
+    bottom: 30%;
+    left: 8%;
+    animation-delay: 2s;
+}
+
+.shape:nth-child(4) {
+    bottom: 15%;
+    right: 5%;
+    animation-delay: 0.5s;
+}
+
+.shape:nth-child(5) {
+    top: 50%;
+    right: 15%;
+    animation-delay: 1.5s;
+}
+
+.shape:nth-child(6) {
+    top: 35%;
+    left: 15%;
+    animation-delay: 2.5s;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+}
+
+/* Gear shape */
+.shape-gear {
+    color: rgba(255, 255, 255, 0.12);
+    font-size: 3rem;
+}
+
+/* Chevron arrows */
+.shape-chevrons {
+    color: rgba(93, 173, 226, 0.15);
+    font-size: 2.5rem;
+}
+
+/* Dots grid */
+.shape-dots {
+    width: 80px;
+    height: 80px;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.2) 2px, transparent 2px);
+    background-size: 12px 12px;
+}
+
+/* Code bracket */
+.shape-code {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    color: rgba(255, 255, 255, 0.06);
+}
+
+/* ==========================================================================
+   Responsive Adjustments
+   ========================================================================== */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 120px 0 80px;
+    }
+
+    .hero-title {
+        letter-spacing: 2px;
+    }
+
+    .section {
+        padding: 60px 0;
+    }
+
+    .candidate-card .candidate-img {
+        width: 200px;
+        height: 240px;
+    }
+
+    .period-tag {
+        right: -15px;
+        bottom: 55px;
+    }
+
+    .vote-badge {
+        left: -20px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .container {
+        padding: 0 1rem;
+    }
+
+    .candidate-card .candidate-img {
+        width: 180px;
+        height: 220px;
+    }
+}
+
+/* Scrollbar customization */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-body);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-bright);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+}

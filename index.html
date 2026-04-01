@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neamul Morshed Neon — President Candidate | SSTU Computer Club</title>
+    <meta name="description"
+        content="Vote for Neamul Morshed Neon as President of SSTU Computer Club 2026-2027. Empowering tech enthusiasts to innovate, build, and lead together.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- AOS Animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ========== NAVBAR ========== -->
+    <header id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fa-solid fa-terminal"></i> Neon's Manifesto
+            </div>
+            <nav class="nav-links">
+                <a href="#hero" data-i18n="nav.home">Home</a>
+                <a href="#insights" data-i18n="nav.insights">Insights</a>
+                <a href="#solutions" data-i18n="nav.solutions">Solutions</a>
+                <a href="#manifesto" data-i18n="nav.manifesto">Manifesto</a>
+                <a href="#feedback" class="btn-sm" data-i18n="nav.feedback">Feedback</a>
+            </nav>
+            <div class="toggles">
+                <button id="themeToggle" class="toggle-btn" aria-label="Toggle Dark Mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+            <button class="mobile-menu-btn" aria-label="Open Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        <!-- Mobile Panel -->
+        <div class="mobile-nav-panel">
+            <a href="#hero" data-i18n="nav.home" class="mobile-link">Home</a>
+            <a href="#insights" data-i18n="nav.insights" class="mobile-link">Insights</a>
+            <a href="#solutions" data-i18n="nav.solutions" class="mobile-link">Solutions</a>
+            <a href="#manifesto" data-i18n="nav.manifesto" class="mobile-link">Manifesto</a>
+            <a href="#feedback" data-i18n="nav.feedback" class="mobile-link">Feedback</a>
+            <div class="mobile-toggles" style="display:none;">
+                <button id="themeToggleMobile" class="toggle-btn" aria-label="Toggle Dark Mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ========== HERO ========== -->
+        <section id="hero" class="hero-section text-center">
+            <!-- Floating decorative shapes like the poster -->
+            <div class="floating-shapes">
+                <div class="shape shape-gear"><i class="fa-solid fa-gear"></i></div>
+                <div class="shape shape-chevrons"><i class="fa-solid fa-angles-down"></i></div>
+                <div class="shape shape-dots"></div>
+                <div class="shape shape-code">{ }</div>
+                <div class="shape shape-gear"><i class="fa-solid fa-certificate"></i></div>
+                <div class="shape shape-chevrons"><i class="fa-solid fa-angles-right"></i></div>
+            </div>
+            <div class="hero-bg-shapes"></div>
+
+            <div class="container" data-aos="fade-up" data-aos-duration="1000">
+                <div class="hero-content">
+                    <h1 class="hero-title" data-i18n="hero.title">PRESIDENT CANDIDATE</h1>
+                    <h2 class="hero-subtitle">
+                        <span class="bg-accent" data-i18n="hero.clubName">SSTU COMPUTER CLUB</span>
+                    </h2>
+
+                    <div class="candidate-card-wrapper" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="vote-badge">
+                            <i class="fa-solid fa-check-to-slot"></i>
+                            <span data-i18n="hero.vote">VOTE</span>
+                        </div>
+                        <div class="candidate-card style-polaroid">
+                            <i class="fa-solid fa-circle pin"></i>
+                            <img src="assets/img/candidate.png" alt="Neamul Morshed Neon" class="candidate-img">
+                        </div>
+                        <div class="period-tag">
+                            <span class="year">2026-2027</span><br>
+                            <span data-i18n="hero.period">Period</span>
+                        </div>
+                    </div>
+
+                    <h3 class="candidate-name" data-i18n="hero.name">NEAMUL MORSHED NEON</h3>
+                    <p class="tagline" data-i18n="hero.tagline">Empowering tech enthusiasts to innovate, build and lead
+                        together</p>
+
+                    <div class="hero-ctas">
+                        <a href="#insights" class="btn btn-primary">
+                            <i class="fa-solid fa-rocket"></i>
+                            <span data-i18n="hero.cta">Explore My Vision</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== INSIGHTS / POLL ========== -->
+        <section id="insights" class="section bg-section">
+            <div class="container">
+                <div class="section-header text-center" data-aos="fade-up">
+                    <h2 data-i18n="insights.title">What students want based on recent polls</h2>
+                    <!-- <p data-i18n="insights.subtitle">What students want based on recent polls</p> -->
+                </div>
+
+                <div class="insights-content" data-aos="fade-up" data-aos-delay="150">
+                    <div class="poll-wrapper">
+                        <div class="custom-poll-container">
+                            <h3 class="poll-question">What should be our primary focus next year?</h3>
+
+                            <!-- Voting Options -->
+                            <div id="poll-options">
+                                <label class="poll-checkbox-label">
+                                    <input type="checkbox" value="0">
+                                    <span>Hands-on Offline Coding Bootcamps</span>
+                                </label>
+                                <label class="poll-checkbox-label">
+                                    <input type="checkbox" value="1">
+                                    <span>More National & International Hackathon/Contest Participation</span>
+                                </label>
+                                <label class="poll-checkbox-label">
+                                    <input type="checkbox" value="2">
+                                    <span>Skill Building and Sharing</span>
+                                </label>
+                                <label class="poll-checkbox-label">
+                                    <input type="checkbox" value="3">
+                                    <span>Team Based Work & Projects</span>
+                                </label>
+                                <button id="submit-poll-btn" class="btn btn-primary"
+                                    style="width:100%; margin-top:1rem;">Submit Vote(s)</button>
+                            </div>
+
+                            <!-- Live Results Display -->
+                            <div id="poll-results" style="display: none;">
+                                <h4 style="margin-bottom:1.5rem; text-align:center; color: var(--primary-bright);">
+                                    Thanks for voting!</h4>
+                                <div id="results-container"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== PROBLEMS & SOLUTIONS ========== -->
+        <section id="solutions" class="section">
+            <div class="container">
+                <div class="section-header text-center" data-aos="fade-up">
+                    <h2 data-i18n="solutions.title">Issues & Resolutions</h2>
+                    <p data-i18n="solutions.subtitle">Identifying gaps and taking actionable steps</p>
+                </div>
+
+                <div class="solutions-grid">
+                    <!-- Card 1 -->
+                    <div class="solution-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="problem">
+                            <div class="icon"><i class="fa-solid fa-xmark"></i></div>
+                            <p data-i18n="solutions.prob1">Lack of structured hands-on coding workshops</p>
+                        </div>
+                        <div class="divider"><i class="fa-solid fa-arrow-right"></i></div>
+                        <div class="solution">
+                            <div class="icon"><i class="fa-solid fa-check"></i></div>
+                            <p data-i18n="solutions.sol1">Introduce Weekly/Monthly hands-on bootcamps under mentors</p>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="solution-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="problem">
+                            <div class="icon"><i class="fa-solid fa-xmark"></i></div>
+                            <p data-i18n="solutions.prob2">Low participation in competitive programming</p>
+                        </div>
+                        <div class="divider"><i class="fa-solid fa-arrow-right"></i></div>
+                        <div class="solution">
+                            <div class="icon"><i class="fa-solid fa-check"></i></div>
+                            <p data-i18n="solutions.sol2">Organize weekly practice contests and an intra-University
+                                League<span> <br><a href="https://neamul09.github.io/sstucp">Visit
+                                        Leaderboard</a></span>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="solution-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="problem">
+                            <div class="icon"><i class="fa-solid fa-xmark"></i></div>
+                            <p data-i18n="solutions.prob3">Lack of Infrastructure of development of Ideas & Projects</p>
+                        </div>
+                        <div class="divider"><i class="fa-solid fa-arrow-right"></i></div>
+                        <div class="solution">
+                            <div class="icon"><i class="fa-solid fa-check"></i></div>
+                            <p data-i18n="solutions.sol3">Implement a team based project development infrastructure
+                                (e.g. Robo Team, Dev Team, ML Team)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== MANIFESTO ========== -->
+        <section id="manifesto" class="section bg-section">
+            <div class="container">
+                <div class="section-header text-center" data-aos="fade-up">
+                    <h2 data-i18n="manifesto.title">My Manifesto</h2>
+                    <p data-i18n="manifesto.subtitle">My commitments for the 2026-2027 period</p>
+                </div>
+
+                <div class="manifesto-grid">
+
+                    <div class="manifesto-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="icon-wrapper">
+                            <i class="fa-solid fa-trophy"></i>
+                        </div>
+                        <h4 data-i18n="manifesto.item2Title">University Automation</h4>
+                        <p data-i18n="manifesto.item2Desc">Automate University works usingto make the academic life
+                            easier by Implementing <b><u>Smart Campus Systems</u></b></p>
+                    </div>
+                    <div class="manifesto-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="icon-wrapper">
+                            <i class="fa-solid fa-laptop-code"></i>
+                        </div>
+                        <h4 data-i18n="manifesto.item1Title">Skill Development</h4>
+                        <p data-i18n="manifesto.item1Desc">Regular participation and learning on modern technologies</p>
+                    </div>
+                    <div class="manifesto-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="icon-wrapper">
+                            <i class="fa-solid fa-handshake-angle"></i>
+                        </div>
+                        <h4 data-i18n="manifesto.item3Title">Career Readiness</h4>
+                        <p data-i18n="manifesto.item3Desc">Introduce CV building sessions, and industry networking
+                            events.</p>
+                    </div>
+                    <div class="manifesto-item" data-aos="fade-up" data-aos-delay="400">
+                        <div class="icon-wrapper">
+                            <i class="fa-solid fa-globe"></i>
+                        </div>
+                        <h4 data-i18n="manifesto.item4Title">Competitive Culture</h4>
+                        <p data-i18n="manifesto.item4Desc">Encourage students to participate in national and
+                            international level competitions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== FEEDBACK ========== -->
+        <section id="feedback" class="section feedback-section text-center">
+            <div class="container" data-aos="fade-up">
+                <i class="fa-regular fa-comment-dots feedback-icon"></i>
+                <h2 data-i18n="feedback.title">Your Voice Matters</h2>
+                <p data-i18n="feedback.subtitle">Help shape our community by sharing your valuable feedback.</p>
+                <div class="poll-wrapper" style="margin-top: 2.5rem; text-align: left;">
+                    <iframe
+                        data-tally-src="https://tally.so/embed/obo88M?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+                        loading="lazy" width="100%" height="350" frameborder="0" marginheight="0" marginwidth="0"
+                        title="Feedback Form">
+                    </iframe>
+                    <script>var d = document, w = "https://tally.so/widgets/embed.js", v = function () { "undefined" != typeof Tally ? Tally.loadEmbeds() : d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function (e) { e.src = e.dataset.tallySrc })) }; if ("undefined" != typeof Tally) v(); else if (d.querySelector('script[src="' + w + '"]') == null) { var s = d.createElement("script"); s.src = w, s.onload = v, s.onerror = v, d.body.appendChild(s); }</script>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand" data-i18n="footer.name">Neamul Morshed Neon</div>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/auuas.shsjusus" aria-label="Facebook"><i
+                            class="fa-brands fa-facebook"></i></a>
+                    <a href="www.linkedin.com/in/neamul-morshed" aria-label="LinkedIn"><i
+                            class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://github.com/neamul09" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                </div>
+                <div class="copyright">&copy; 2026 SSTU Computer Club. All Rights Reserved.</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Custom Script -->
+    <script src="script.js"></script>
+</body>
+
+</html>
