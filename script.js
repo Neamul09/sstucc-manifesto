@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
 
     // Unique fresh namespace for the app to collect cross-user votes securely
-    const NAMESPACE = 'sstucc-v2026-fresh-start';
+    const NAMESPACE = 'sstucc-v2026-1122';
 
     let isFirstLoad = true;
 
@@ -111,10 +111,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const pollOptionsObj = document.getElementById('poll-options');
         const pollResultsObj = document.getElementById('poll-results');
         const resultsBox = document.getElementById('results-container');
-        
+
         if (pollOptionsObj) pollOptionsObj.style.display = 'none';
         if (pollResultsObj) pollResultsObj.style.display = 'block';
-        
+
         if (isFirstLoad) {
             resultsBox.innerHTML = '<p style="text-align:center; opacity:0.7;"><i class="fa-solid fa-spinner fa-spin"></i> Connecting to Live Data...</p>';
         }
@@ -128,6 +128,11 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             // Push votes sequentially if any
             if (votedIndices.length > 0) {
+                // Increment total respondents/submissions first
+                await fetch(buildApiUrl(`total-submissions/up?t=${Date.now()}`))
+                    .catch(err => console.warn("Submission counter push network masked error:", err));
+
+                // Then increment individual options
                 for (const index of votedIndices) {
                     await fetch(buildApiUrl(`opt-${index}/up?t=${Date.now()}`))
                         .catch(err => console.warn("Vote push network masked error:", err));
@@ -139,30 +144,28 @@ document.addEventListener("DOMContentLoaded", () => {
             const fetchPromises = pollItems.map((_, i) => {
                 return fetch(buildApiUrl(`opt-${i}?t=${Date.now()}`))
                     .then(res => res.ok ? res.json() : { count: 0 })
-                    .catch(() => ({ count: 0 })); 
+                    .catch(() => ({ count: 0 }));
             });
 
             const results = await Promise.all(fetchPromises);
-            let totalVotes = results.reduce((acc, curr) => acc + curr.count, 0);
-            if (totalVotes === 0) totalVotes = 1;
+
+            // NEW: Fetch total respondents/submissions for correct multi-select % math
+            const totalReponsesRes = await fetch(buildApiUrl(`total-submissions?t=${Date.now()}`))
+                .then(res => res.ok ? res.json() : { count: 1 })
+                .catch(() => ({ count: 1 }));
+
+            let totalRespondents = Math.max(totalReponsesRes.count, 1);
 
             // Structure data and sort by highest votes
             let finalData = pollItems.map((text, i) => ({
                 id: i,
                 text,
-                votes: results[i].count
-            })).sort((a,b) => b.votes - a.votes);
+                votes: results[i].count,
+                percentage: parseFloat(((results[i].count / totalRespondents) * 100).toFixed(1))
+            })).sort((a, b) => b.votes - a.votes);
 
-            // Absolute precision logic: Ensure it mathematically always equals 100.0% exactly 
-            let sumPercentages = 0;
-            finalData.forEach(item => {
-                item.percentage = parseFloat(((item.votes / totalVotes) * 100).toFixed(1));
-                sumPercentages += item.percentage;
-            });
-            if (totalVotes > 1 && sumPercentages !== 100.0) {
-                const diff = parseFloat((100.0 - sumPercentages).toFixed(1));
-                finalData[0].percentage = parseFloat((finalData[0].percentage + diff).toFixed(1));
-            }
+            // Note: For multi-select, percentages can exceed 100% total, 
+            // so we don't force a sum correction here.
 
             // Render DOM structure
             if (isFirstLoad) {
@@ -189,9 +192,9 @@ document.addEventListener("DOMContentLoaded", () => {
                         fill.style.width = fill.getAttribute('data-target');
                     });
                 }, 100);
-                
+
                 isFirstLoad = false;
-                
+
                 // Keep polling every 20 seconds silently
                 setInterval(() => {
                     if (pollResultsObj.style.display === 'block') fetchLiveResults([]);
@@ -204,7 +207,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         itemDiv.style.order = index; // CSS trick to sort naturally
                         itemDiv.querySelector('.vote-count-text').textContent = `(${item.votes} votes)`;
                         itemDiv.querySelector('.percentage-text').textContent = `${item.percentage.toFixed(1)}%`;
-                        
+
                         const fill = itemDiv.querySelector('.result-bar-fill');
                         fill.setAttribute('data-target', `${item.percentage.toFixed(1)}%`);
                         fill.style.width = `${item.percentage.toFixed(1)}%`;
@@ -230,17 +233,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 alert("Please select at least one priority!");
                 return;
             }
-            
+
             // Get array of selected indices
             const votedIndices = Array.from(checkedBoxes).map(cb => parseInt(cb.value));
-            
+
             // Visual feedback
             submitPollBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Submitting...';
             submitPollBtn.disabled = true;
-            
+
             // Send votes
             fetchLiveResults(votedIndices);
-            
+
             // Lock UI locally afterwards
             localStorage.setItem('voted_sstucc_live', 'true');
         });
