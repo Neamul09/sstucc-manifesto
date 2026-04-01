@@ -1310,3 +1310,37 @@ footer {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--primary);
 }
+
+/* ==========================================================================
+   Visit Links (CTA Buttons in Cards)
+   ========================================================================== */
+.visit-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-bright));
+    color: white !important;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none !important;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 15px rgba(26, 79, 186, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.visit-link:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(26, 79, 186, 0.3);
+    filter: brightness(1.1);
+}
+
+.visit-link i {
+    font-size: 1.1rem;
+}
+
+.dark-mode .visit-link {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}

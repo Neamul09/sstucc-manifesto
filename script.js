@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
 
     // Unique fresh namespace for the app to collect cross-user votes securely
-    const NAMESPACE = 'sstucc-v2026-Final-1122';
+    const NAMESPACE = 'sstucc-v2026-1122';
 
     let isFirstLoad = true;
 
